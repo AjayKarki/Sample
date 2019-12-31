@@ -1,4 +1,4 @@
-"""demo URL Configuration
+"""ProTwo URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -14,12 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from demoapp2 import urls as demoapp2_urls
-from demoapp import urls as demoapp_urls
+from django.urls import path,include
+from AppTwo import urls as AppTwoUrls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('d1/', include(demoapp_urls)),
-    path('d2/', include(demoapp2_urls))
+    path('apptwo/',include(AppTwoUrls))
+
 ]
