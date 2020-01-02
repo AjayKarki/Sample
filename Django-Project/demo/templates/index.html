@@ -1,11 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
-<h2 style="color: green; font-family: cursive">This is Home page</h2>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}| Home {% endblock %}
+{% block content %}
+    <h2 style="color: green; font-family: cursive">This is Home page</h2>
+    {% if is_login %}
+        User is Logged in.
+    {% else %}
+        User is not logged in
+    {% endif %}
 
-</body>
-</html>
+    <h4>List of Books</h4>
+    <hr>
+    <ol>
+        {% for book in list_books %}
+            <li>{{ book }}</li>
+        {% endfor %}
+    </ol>
+
+    <h4>List of Authors</h4>
+    <hr>
+    <ol>
+        {% for author in list_auths %}
+            <li>{{ author }}</li>
+        {% endfor %}
+    </ol>
+    <table style="border: 2px solid">
+        <tr style="background: gray; color: aliceblue;">
+            <th>List of Books</th>
+        </tr>
+        {% for book in list_books %}
+            <tr style="background: antiquewhite;">
+                <td>{{ book }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <tr>
+            <th>List of Authors</th>
+        </tr>
+        {% for author in list_auths %}
+            <tr>
+                <td>{{ author }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {#<a href="/d1/contact-us">Contact us</a>#}
+    <a class="a" href="{% url 'contact-us' %}">Contact Us</a>
+{% endblock content %}

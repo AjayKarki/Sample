@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django-Practice
+    {% block title %}
+
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<p>Place Your Nave bar</p>
+{% block content %}
+{% endblock %}
+<p>Place Your Footer</p>
+</body>
+</html>

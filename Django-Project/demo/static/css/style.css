@@ -1,19 +1,32 @@
-.red-color{
+.red-color {
     color: red;
     font-family: "Comic Sans MS", serif;
     font-size: 24px;
     font-weight: lighter;
 }
-.body{
+
+.body {
     margin-left: 5%;
     margin-right: 5%;
     background-color: antiquewhite;
 }
-.img{
+
+.img {
     height: 480px;
     width: 720px;
 }
-img:hover{
+
+img:hover {
     background-color: grey;
-    opacity:  75%;
+    opacity: 75%;
+}
+
+.a{
+    color: black;
+}
+a:hover{
+    color: blue;
+}
+a:visited{
+    color: red;
 }
