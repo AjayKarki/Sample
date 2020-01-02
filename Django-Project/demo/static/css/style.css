@@ -1,0 +1,19 @@
+.red-color{
+    color: red;
+    font-family: "Comic Sans MS", serif;
+    font-size: 24px;
+    font-weight: lighter;
+}
+.body{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: antiquewhite;
+}
+.img{
+    height: 480px;
+    width: 720px;
+}
+img:hover{
+    background-color: grey;
+    opacity:  75%;
+}
