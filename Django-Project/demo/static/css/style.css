@@ -5,10 +5,11 @@
     font-weight: lighter;
 }
 
-.body {
+body {
     margin-left: 5%;
     margin-right: 5%;
-    background-color: antiquewhite;
+    background: antiquewhite;
+/*background-image: url("../images/1920x1080-4511255-anime-one-piece-monkey-d.-luffy.png");*/
 }
 
 .img {
@@ -21,12 +22,39 @@ img:hover {
     opacity: 75%;
 }
 
-.a{
+a {
     color: black;
 }
-a:hover{
+
+a:hover {
     color: blue;
 }
-a:visited{
-    color: red;
+
+a:visited {
+    color: white;
+}
+
+h1, h2, h3 {
+    font-family: "Comic Sans MS", sans-serif;
+    color: burlywood;
+}
+
+p:first-letter {
+    font-size: 200%;
+}
+p{
+    /*works in chrome fit-content not in firefox for fire fox max-content*/
+    width: max-content;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 644px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+#div_brown{
+    background-color: maroon;
+    color: antiquewhite;
 }
