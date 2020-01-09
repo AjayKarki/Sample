@@ -4,5 +4,3 @@ from django.shortcuts import render,HttpResponse
 
 def contact_us(request):
     return render(request,'contactus.html')
-
-
