@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Student, Department, DepartmentHead, Room,Subject
+from demoapp import models
 
-admin.site.register(Student)
-admin.site.register(Room)
-admin.site.register(Department)
-admin.site.register(DepartmentHead)
-admin.site.register(Subject)
+admin.site.register(models.Student)
+admin.site.register(models.Room)
+admin.site.register(models.Department)
+admin.site.register(models.DepartmentHead)
+admin.site.register(models.Subject)

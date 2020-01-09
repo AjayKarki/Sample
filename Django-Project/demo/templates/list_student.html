@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}| List Students{% endblock %}
+{% block content %}
+    <table class="bg-dark text-light">
+        <thead class="bg-light text-dark">
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Section</th>
+            <th>Room</th>
+        </thead>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.roll }}</td>
+                <td>{{ student.section }}</td>
+                <td>{{ student.room }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

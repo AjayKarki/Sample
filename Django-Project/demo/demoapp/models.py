@@ -6,7 +6,7 @@ class Room(models.Model):
     floor_no = models.IntegerField()
 
     def __str__(self):
-        return "R " + str(self.room_no) + "F " + str(self.floor_no)
+        return "R-" + str(self.room_no) + " F-" + str(self.floor_no)
 
 
 class Student(models.Model):
@@ -22,7 +22,11 @@ class Student(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=240)
     code = models.CharField(max_length=4)
-    student = models.ManyToManyField(Student,related_name='student')
+    student = models.ManyToManyField(Student, related_name='student')
+
+    def __str__(self):
+        return self.name
+
 
 class Department(models.Model):
     name = models.CharField(max_length=20, null=False)

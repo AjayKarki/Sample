@@ -58,3 +58,12 @@ footer {
     background-color: maroon;
     color: antiquewhite;
 }
+th{
+    padding: 5px;
+    border: solid 1px grey;
+}
+td{
+    padding: 5px;
+    border: solid 1px antiquewhite;
+
+}
