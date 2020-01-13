@@ -2,12 +2,13 @@
 {% load staticfiles %}
 {% block title %}| List Students{% endblock %}
 {% block content %}
-    <table class="bg-dark text-light">
+    <table class="bg-dark text-light mt-5">
         <thead class="bg-light text-dark">
-            <th>Name</th>
-            <th>Roll</th>
-            <th>Section</th>
-            <th>Room</th>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>Section</th>
+        <th>Room</th>
+        <th>Delete</th>
         </thead>
         {% for student in students %}
             <tr>
@@ -15,6 +16,7 @@
                 <td>{{ student.roll }}</td>
                 <td>{{ student.section }}</td>
                 <td>{{ student.room }}</td>
+                <td><a class="btn btn-danger" href="{% url 'delete_student' id=student.id %}">Delete</a></td>
             </tr>
         {% endfor %}
     </table>

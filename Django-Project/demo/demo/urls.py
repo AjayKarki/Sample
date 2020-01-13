@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from demoapp2 import urls as demoapp2_urls
 from demoapp import urls as demoapp_urls
+from demoapp.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('d1/', include(demoapp_urls)),
-    path('d2/', include(demoapp2_urls))
+    path('d2/', include(demoapp2_urls)),
+    path('',home,name = 'home'),
 ]

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}| List Rooms{% endblock %}
+{% block content %}
+    <table class="bg-dark text-light">
+        <thead class="bg-light text-dark">
+        <th>Room Number</th>
+        <th>Floor Number</th>
+        </thead>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.room_no }}</td>
+                <td>{{ room.floor_no }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

@@ -15,23 +15,22 @@ body {
 .img {
     height: 480px;
     width: 720px;
+    transition: transform 1s;
 }
 
 img:hover {
-    background-color: grey;
-    opacity: 75%;
+transform: scale(1.15)
 }
-
 a {
     color: black;
 }
 
 a:hover {
-    color: blue;
+    color: green;
 }
 
 a:visited {
-    color: white;
+    color: blue;
 }
 
 h1, h2, h3 {

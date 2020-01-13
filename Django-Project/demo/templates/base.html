@@ -20,10 +20,23 @@
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<header>
+    <nav class="navbar navbar-dark bg-dark">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'index' %}">Index</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'contact-us' %}">Contact</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'list_student' %}">List Student</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_student' %}">Add Student</a></li>
+
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'list_room' %}">List Room</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_room' %}">Add Room</a></li>
+        </ul>
+    </nav>
+</header>
 <body>
-<p>Place Your Nave bar</p>
 {% block content %}
+
 {% endblock %}
-<p>Place Your Footer</p>
 </body>
 </html>
