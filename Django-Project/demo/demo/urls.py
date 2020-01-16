@@ -18,10 +18,15 @@ from django.urls import path, include
 from demoapp2 import urls as demoapp2_urls
 from demoapp import urls as demoapp_urls
 from demoapp.views import home
+from demo import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('d1/', include(demoapp_urls)),
     path('d2/', include(demoapp2_urls)),
-    path('',home,name = 'home'),
+    path('', home, name='home'),
+
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

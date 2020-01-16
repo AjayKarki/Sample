@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'demoapp',
     'demoapp2',
+
 ]
 
 MIDDLEWARE = [
@@ -122,3 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Here all our media is stored
+MEDIA_URL = '/media/'  # this is url ot access media
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

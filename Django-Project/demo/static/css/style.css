@@ -5,10 +5,9 @@
     font-weight: lighter;
 }
 
-body {
-    margin-left: 5%;
-    margin-right: 5%;
-    background: antiquewhite;
+.body-class {
+
+    background: antiquewhite !important;
 /*background-image: url("../images/1920x1080-4511255-anime-one-piece-monkey-d.-luffy.png");*/
 }
 
@@ -27,10 +26,6 @@ a {
 
 a:hover {
     color: green;
-}
-
-a:visited {
-    color: blue;
 }
 
 h1, h2, h3 {
@@ -65,4 +60,14 @@ td{
     padding: 5px;
     border: solid 1px antiquewhite;
 
+}
+.photo {
+    height: 240px;
+    width: 240px;
+    padding: 5px;
+    object-fit: fill;
+    transition: transform 2s;
+}
+.photo:hover{
+    transform: scale(1.2);
 }

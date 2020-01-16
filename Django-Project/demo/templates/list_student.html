@@ -2,22 +2,27 @@
 {% load staticfiles %}
 {% block title %}| List Students{% endblock %}
 {% block content %}
-    <table class="bg-dark text-light mt-5">
-        <thead class="bg-light text-dark">
+    <table class="table bg-light text-dark mt-5">
+        <thead class="bg-dark text-light">
         <th>Name</th>
+        <th>Image</th>
         <th>Roll</th>
         <th>Section</th>
         <th>Room</th>
+        <th>Edit</th>
         <th>Delete</th>
         </thead>
         {% for student in students %}
             <tr>
                 <td>{{ student.name }}</td>
+                <td><img class="photo" src="{{ student.photo.url }}" style="height: 128px"></td>
                 <td>{{ student.roll }}</td>
                 <td>{{ student.section }}</td>
                 <td>{{ student.room }}</td>
+                <td><a class="btn btn-warning" href="{% url 'edit_student' id=student.id %}">Edit</a></td>
                 <td><a class="btn btn-danger" href="{% url 'delete_student' id=student.id %}">Delete</a></td>
             </tr>
         {% endfor %}
     </table>
+    <a class="btn btn-success" href="{% url 'add_student' %}">Add Student</a>
 {% endblock content %}

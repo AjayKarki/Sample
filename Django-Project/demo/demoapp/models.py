@@ -14,6 +14,7 @@ class Student(models.Model):
     roll = models.IntegerField()
     section = models.CharField(max_length=12)
     room = models.ForeignKey(Room, on_delete=models.PROTECT, null=True)
+    photo = models.ImageField(upload_to='student_pics', default='test.png')
 
     def __str__(self):
         return self.name

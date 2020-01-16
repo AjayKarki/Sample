@@ -14,11 +14,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome/font-awesome.min.css' %}">
+
     <title>Django-Practice
         {% block title %}
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <header>
     <nav class="navbar navbar-dark bg-dark">
@@ -28,15 +31,31 @@
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'contact-us' %}">Contact</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'list_student' %}">List Student</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_student' %}">Add Student</a></li>
-
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'list_room' %}">List Room</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_room' %}">Add Room</a></li>
         </ul>
     </nav>
 </header>
-<body>
-{% block content %}
+<body class="body-class">
+<div class="container">
+    {% if messages %}
 
-{% endblock %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% block content %}
+
+    {% endblock %}
+</div>
 </body>
 </html>
