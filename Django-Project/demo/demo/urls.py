@@ -18,6 +18,7 @@ from django.urls import path, include
 from demoapp2 import urls as demoapp2_urls
 from demoapp import urls as demoapp_urls
 from demoapp.views import home
+from demoapp import views
 from demo import settings
 from django.conf.urls.static import static
 
@@ -26,6 +27,9 @@ urlpatterns = [
     path('d1/', include(demoapp_urls)),
     path('d2/', include(demoapp2_urls)),
     path('', home, name='home'),
+    path('login/', views.user_login, name='user_login'),
+    path('logout/', views.user_logout, name='user_logout'),
+    path('register/', views.user_register, name='user_register'),
 
 ]
 

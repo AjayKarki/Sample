@@ -16,13 +16,13 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'font-awesome/font-awesome.min.css' %}">
-
+    <link rel="stylesheet" href="{% static 'font-awesome/css/all.css' %}">
     <title>Django-Practice
         {% block title %}
         {% endblock %}
     </title>
 </head>
+{% if user.is_authenticated %}
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <ul class="nav nav-pills">
@@ -33,26 +33,30 @@
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_student' %}">Add Student</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'list_room' %}">List Room</a></li>
             <li class="nav-item"><a class="nav-link text-light" href="{% url 'add_room' %}">Add Room</a></li>
+            <li class="nav-item"><a class="nav-link text-light" href="{% url 'user_logout' %}">Logout ({{ user.username }})</a></li>
+
         </ul>
     </nav>
 </header>
+{%  endif %}
 <body class="body-class">
-<div class="container">
+<div class="container-fluid">
     {% if messages %}
 
         {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                 <div class="alert alert-success">
-                    {{ message }}
+                    <i class="fa fa-apple"></i>{{ message }}
                 </div>
             {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                 <div class="alert alert-danger">
-                    {{ message }}
+                    <i class="fa fa-exclamation-triangle"></i> {{ message }}
                 </div>
 
             {% endif %}
         {% endfor %}
     {% endif %}
+
     {% block content %}
 
     {% endblock %}
