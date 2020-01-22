@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
-from .models import Student, Room,Subject
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404,reverse
+from .models import Student, Room, Subject
 from .forms import StudentForm, RoomForm, LoginForm, RegistrationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -146,3 +146,43 @@ class RoomDetail(LoginRequiredMixin, generic.DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(Room, id=self.kwargs['id'])
+
+
+class RoomCreateView(LoginRequiredMixin, generic.CreateView):
+    login_url = '/login/'
+    template_name = 'room_create.html'
+    form_class = RoomForm
+    success_url = reverse_lazy('list_room')
+
+
+class RoomUpdateView(LoginRequiredMixin, generic.UpdateView):
+    template_name = 'room_update.html'
+    form_class = RoomForm
+    login_url = '/login/'
+
+    def get_object(self,queryset=None):
+        return get_object_or_404(Room,id = self.kwargs['id'])
+
+    def get_success_url(self):
+        return reverse('list_room')
+
+
+class RoomDeleteView(LoginRequiredMixin,generic.DeleteView):
+    template_name = 'delete.html'
+    login_url = '/login/'
+
+    def post(self, request, *args, **kwargs):
+        try:
+            room = Room.objects.get(id=self.kwargs['id'])
+            room.delete()
+            return redirect('list_room')
+        except:
+            messages.error(request,"Cant delete")
+            return redirect('list_room')
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Room,id=self.kwargs['id'])
+
+
+    def get_success_url(self):
+        return reverse('list_room')
