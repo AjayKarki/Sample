@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}| List Rooms{% endblock %}
+{% block content %}
+    <table class="container mt-5 table bg-light text-dark">
+        <thead class="bg-dark text-light">
+        <th>Name</th>
+        <th>Code</th>
+        <th>Student</th>
+        </thead>
+        {% for student in object_list %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.code }}</td>
+                <td>{{ student.student }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
