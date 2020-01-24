@@ -1,9 +1,12 @@
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save,post_delete
 
 
 class Room(models.Model):
     room_no = models.IntegerField()
     floor_no = models.IntegerField()
+    numbers = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return "R-" + str(self.room_no) + " F-" + str(self.floor_no)
@@ -43,3 +46,10 @@ class DepartmentHead(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# @receiver(post_save, sender=Student )
+# def increment_room(instance):
+#     room = instance.room
+#     room.numbers +=1
+#     room.save()

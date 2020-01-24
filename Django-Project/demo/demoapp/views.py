@@ -38,13 +38,16 @@ def list_room(request):
 def add_student(request):
     if request.method == 'GET':
         student_form = StudentForm()
-        print(student_form)
         return render(request, 'add_student.html', {'form': student_form})
     elif request.method == 'POST':
         student_form = StudentForm(request.POST, request.FILES)
         if student_form.is_valid():
             student_form.save()
             messages.info(request, "Addition Successful")
+        else:
+            messages.error(request,student_form.errors)
+            student_form = StudentForm(request.POST)
+            return  render( request,"add_student.html",{'form':student_form})
     return redirect('list_student')
 
 
@@ -125,7 +128,10 @@ def user_register(request):
             user = user.save()
             user.set_password(user.password)
             user.save()
-        return redirect('user_login')
+            return redirect('user_login')
+        else:
+            user_register = RegistrationForm(request.POST)
+            return render(request,'register.html',{'register_form':user_register})
 
 
 class ListRooms(LoginRequiredMixin, generic.ListView):
