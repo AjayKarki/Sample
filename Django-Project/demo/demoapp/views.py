@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404,reverse
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404, reverse
 from .models import Student, Room, Subject
 from .forms import StudentForm, RoomForm, LoginForm, RegistrationForm
 from django.contrib import messages
@@ -8,7 +8,11 @@ from django.utils.decorators import method_decorator
 from django.views import View, generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-
+from django.views.decorators.csrf import csrf_exempt
+from .serializers import StudentSerializer
+from django.http import JsonResponse
+from rest_framework.parsers import JSONParser
+from rest_framework import viewsets
 
 @login_required(login_url='login/')
 def home(request):
@@ -45,9 +49,9 @@ def add_student(request):
             student_form.save()
             messages.info(request, "Addition Successful")
         else:
-            messages.error(request,student_form.errors)
+            messages.error(request, student_form.errors)
             student_form = StudentForm(request.POST)
-            return  render( request,"add_student.html",{'form':student_form})
+            return render(request, "add_student.html", {'form': student_form})
     return redirect('list_student')
 
 
@@ -131,7 +135,7 @@ def user_register(request):
             return redirect('user_login')
         else:
             user_register = RegistrationForm(request.POST)
-            return render(request,'register.html',{'register_form':user_register})
+            return render(request, 'register.html', {'register_form': user_register})
 
 
 class ListRooms(LoginRequiredMixin, generic.ListView):
@@ -166,14 +170,14 @@ class RoomUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = RoomForm
     login_url = '/login/'
 
-    def get_object(self,queryset=None):
-        return get_object_or_404(Room,id = self.kwargs['id'])
+    def get_object(self, queryset=None):
+        return get_object_or_404(Room, id=self.kwargs['id'])
 
     def get_success_url(self):
         return reverse('list_room')
 
 
-class RoomDeleteView(LoginRequiredMixin,generic.DeleteView):
+class RoomDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = 'delete.html'
     login_url = '/login/'
 
@@ -183,12 +187,50 @@ class RoomDeleteView(LoginRequiredMixin,generic.DeleteView):
             room.delete()
             return redirect('list_room')
         except:
-            messages.error(request,"Cant delete")
+            messages.error(request, "Cant delete")
             return redirect('list_room')
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Room,id=self.kwargs['id'])
-
+        return get_object_or_404(Room, id=self.kwargs['id'])
 
     def get_success_url(self):
         return reverse('list_room')
+
+
+@csrf_exempt
+def student_api(request):
+    if request.method == 'GET':
+        students = Student.objects.all()
+        student_serializer = StudentSerializer(students, many=True)
+        return JsonResponse(student_serializer.data, safe=False)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        student_serializer = StudentSerializer(data=data)
+        if student_serializer.is_valid():
+            student_serializer.save()
+            return JsonResponse(student_serializer.data, status=200)
+        else:
+            return HttpResponse(status=400)
+
+
+@csrf_exempt
+def student_api_detail(request, id):
+    try:
+        student = Student.objects.get(id=id)
+    except Student.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = StudentSerializer(student)
+        return JsonResponse(serializer.data)
+    elif request.method == 'DELETE':
+        student.delete()
+        return HttpResponse(status=204)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = StudentSerializer(student, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=404)
+
+

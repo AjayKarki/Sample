@@ -21,6 +21,7 @@ from demoapp.views import home
 from demoapp import views
 from demo import settings
 from django.conf.urls.static import static
+from rest_framework.authtoken import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('login/', views.user_login, name='user_login'),
     path('logout/', views.user_logout, name='user_logout'),
     path('register/', views.user_register, name='user_register'),
+    path('auth_token/', v.obtain_auth_token),
 
 ]
 

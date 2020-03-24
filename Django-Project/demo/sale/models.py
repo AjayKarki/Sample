@@ -23,3 +23,4 @@ def update_items(sender, instance, **kwargs):
 def increase_items(sender, instance, **kwargs):
     instance.item.quantity += instance.quantity_sold
     instance.item.save()
+0

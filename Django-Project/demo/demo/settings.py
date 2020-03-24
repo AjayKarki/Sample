@@ -26,7 +26,7 @@ SECRET_KEY = 'c!33r%_r@dob%_x%g4n$q6w5u+a%kzp-vdx0i4p%yaqw42v1_f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,11 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    # MY APPS
     'demoapp',
     'demoapp2',
     'sale',
-
+    # other apps
+    'rest_framework',
+    'crispy_forms',
+    'rest_framework.authentication',
+    'rest_framework.authtoken',
+    'rest_framework.permissions',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +58,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 ROOT_URLCONF = 'demo.urls'
 
@@ -128,6 +144,5 @@ STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Here all our media is stored
 MEDIA_URL = '/media/'  # this is url ot access media
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from demoapp import views
+from .router import router
 
 urlpatterns = [
     path('contact-us/', views.contact_us, name='contact-us'),
@@ -12,6 +13,8 @@ urlpatterns = [
     path('detail_student/<int:id>/', views.RoomDetail.as_view(), name='detail_room'),
     path('add_room/', views.RoomCreateView.as_view(), name='add_room'),
     path('edit_room/<int:id>', views.RoomUpdateView.as_view(), name='edit_room'),
-    path('delete/<int:id>/', views.RoomDeleteView.as_view(),name = 'delete'),
-
+    path('delete/<int:id>/', views.RoomDeleteView.as_view(), name='delete'),
+    path('student_api/', views.student_api, name='student_api'),
+    path('student_api/<int:id>/', views.student_api_detail, name='student_api_detail'),
+    path('api/', include(router.urls))
 ]
